@@ -45,27 +45,25 @@ let editingItemId = null;
 // Cada categoría debe tener un emoji representativo.
 //
 // EJEMPLO (Planetario - NO es un dominio asignable):
+// ============================================
+// TODO 1: DEFINIR CATEGORÍAS DE TU DOMINIO
+// ============================================
+
 const CATEGORIES = {
-   planet: { name: 'Planeta', emoji: '🪐' },
-   star: { name: 'Estrella', emoji: '⭐' },
-   asteroid: { name: 'Asteroide', emoji: '☄️' },
-   comet: { name: 'Cometa', emoji: '💫' },
-   moon: { name: 'Luna', emoji: '🌙' },
-  };
-
-const CATEGORIE = {
-  // TODO: Define las categorías de tu dominio
- category1: { name: 'Nombre en español', emoji: '🔹' },
- category2: { name: 'Nombre en español', emoji: '🔸' },
- category3: { name: 'Nombre en español', emoji: '🔷' },
+  emotional: { name: 'Bienestar Emocional', emoji: '🧠' },
+  therapy: { name: 'Terapia y Consulta', emoji: '💬' },
+  meditation: { name: 'Meditación y Zen', emoji: '🧘' },
+  habits: { name: 'Hábitos y Rutinas', emoji: '🌱' },
+  sleep: { name: 'Descanso y Sueño', emoji: '🌙' },
 };
 
-// Prioridades genéricas (adapta los nombres si es necesario)
+// Prioridades adaptadas al triaje de bienestar
 const PRIORITIES = {
-  high: { name: 'Alta', color: '#ef4444' },
-  medium: { name: 'Media', color: '#f59e0b' },
-  low: { name: 'Baja', color: '#22c55e' },
+  high: { name: 'Urgente / Crisis', color: '#ef4444' },
+  medium: { name: 'Seguimiento', color: '#f59e0b' },
+  low: { name: 'Autocuidado', color: '#22c55e' },
 };
+
 
 // ============================================
 // TODO 2: PERSISTENCIA (LocalStorage)
