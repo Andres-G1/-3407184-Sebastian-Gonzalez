@@ -200,13 +200,13 @@ const toggleItemActive = id => {
   // 4. Guarda y retorna
   //
   // EJEMPLO:
-  // const updatedItems = items.map(item =>
-  //   item.id === id
-  //     ? { ...item, active: !item.active, updatedAt: new Date().toISOString() }
-  //     : item
-  // );
-  // saveItems(updatedItems);
-  // return updatedItems;
+  const updatedItems = items.map(item =>
+     item.id === id
+       ? { ...item, active: !item.active, updatedAt: new Date().toISOString() }
+       : item
+   );
+   saveItems(updatedItems);
+   return updatedItems;
 };
 
 /**
@@ -215,9 +215,9 @@ const toggleItemActive = id => {
  */
 const clearInactive = () => {
   // TODO: Implementa usando filter
-  // const activeItems = items.filter(item => item.active);
-  // saveItems(activeItems);
-  // return activeItems;
+   const activeItems = items.filter(item => item.active);
+  saveItems(activeItems);
+   return activeItems;
 };
 
 // ============================================
@@ -237,10 +237,10 @@ const filterByStatus = (itemsToFilter, status = 'all') => {
   // - 'inactive': filtra donde active === false
   //
   // EJEMPLO:
-  // if (status === 'all') return itemsToFilter;
-  // if (status === 'active') return itemsToFilter.filter(item => item.active);
-  // if (status === 'inactive') return itemsToFilter.filter(item => !item.active);
-  // return itemsToFilter;
+  if (status === 'all') return itemsToFilter;
+  if (status === 'active') return itemsToFilter.filter(item => item.active);
+  if (status === 'inactive') return itemsToFilter.filter(item => !item.active);
+  return itemsToFilter;
 };
 
 /**
@@ -251,8 +251,8 @@ const filterByStatus = (itemsToFilter, status = 'all') => {
  */
 const filterByCategory = (itemsToFilter, category = 'all') => {
   // TODO: Implementa el filtro por categoría
-  // if (category === 'all') return itemsToFilter;
-  // return itemsToFilter.filter(item => item.category === category);
+  if (category === 'all') return itemsToFilter;
+  return itemsToFilter.filter(item => item.category === category);
 };
 
 /**
@@ -263,6 +263,8 @@ const filterByCategory = (itemsToFilter, category = 'all') => {
  */
 const filterByPriority = (itemsToFilter, priority = 'all') => {
   // TODO: Similar a filterByCategory
+  if (priority === 'all') return itemsToFilter;
+  return itemsToFilter.filter(item => item.priority === priority);
 };
 
 /**
@@ -279,12 +281,12 @@ const searchItems = (itemsToFilter, query) => {
   // 4. Usa .toLowerCase() para búsqueda case-insensitive
   //
   // EJEMPLO:
-  // if (!query || query.trim() === '') return itemsToFilter;
-  // const searchTerm = query.toLowerCase();
-  // return itemsToFilter.filter(item =>
-  //   item.name.toLowerCase().includes(searchTerm) ||
-  //   (item.description ?? '').toLowerCase().includes(searchTerm)
-  // );
+   if (!query || query.trim() === '') return itemsToFilter;
+   const searchTerm = query.toLowerCase();
+   return itemsToFilter.filter(item =>
+     item.name.toLowerCase().includes(searchTerm) ||
+     (item.description ?? '').toLowerCase().includes(searchTerm)
+   );
 };
 
 /**
@@ -298,19 +300,19 @@ const applyFilters = (itemsToFilter, filters = {}) => {
   // Usa destructuring con default values para los filtros
   //
   // EJEMPLO:
-  // const {
-  //   status = 'all',
-  //   category = 'all',
-  //   priority = 'all',
-  //   search = ''
-  // } = filters;
-  //
+   const {
+     status = 'all',
+     category = 'all',
+     priority = 'all',
+     search = ''
+   } = filters;
+  
   // // Encadena los filtros
-  // let result = filterByStatus(itemsToFilter, status);
-  // result = filterByCategory(result, category);
-  // result = filterByPriority(result, priority);
-  // result = searchItems(result, search);
-  // return result;
+   let result = filterByStatus(itemsToFilter, status);
+   result = filterByCategory(result, category);
+   result = filterByPriority(result, priority);
+   result = searchItems(result, search);
+   return result;
 };
 
 // ============================================
@@ -332,23 +334,23 @@ const getStats = (itemsToAnalyze = []) => {
   // - byPriority: objeto con conteo por prioridad
   //
   // EJEMPLO:
-  // const total = itemsToAnalyze.length;
-  // const active = itemsToAnalyze.filter(item => item.active).length;
-  // const inactive = total - active;
+  const total = itemsToAnalyze.length;
+  const active = itemsToAnalyze.filter(item => item.active).length;
+  const inactive = total - active;
   //
   // // Usa reduce para agrupar por categoría
-  // const byCategory = itemsToAnalyze.reduce((acc, item) => {
-  //   acc[item.category] = (acc[item.category] ?? 0) + 1;
-  //   return acc;
-  // }, {});
+   const byCategory = itemsToAnalyze.reduce((acc, item) => {
+     acc[item.category] = (acc[item.category] ?? 0) + 1;
+     return acc;
+   }, {});
   //
   // // Usa reduce para agrupar por prioridad
-  // const byPriority = itemsToAnalyze.reduce((acc, item) => {
-  //   acc[item.priority] = (acc[item.priority] ?? 0) + 1;
-  //   return acc;
-  // }, {});
+   const byPriority = itemsToAnalyze.reduce((acc, item) => {
+     acc[item.priority] = (acc[item.priority] ?? 0) + 1;
+     return acc;
+   }, {});
   //
-  // return { total, active, inactive, byCategory, byPriority };
+   return { total, active, inactive, byCategory, byPriority };
 };
 
 // ============================================
@@ -391,12 +393,12 @@ const renderItem = item => {
   // 4. Incluye checkbox, información y botones de acción
   //
   // EJEMPLO:
-  // const { id, name, description, category, priority, active, createdAt } = item;
+   const { id, name, description, category, priority, active, createdAt } = item;
   //
-  // return `
-  //   <div class="item ${active ? '' : 'inactive'} priority-${priority}" data-item-id="${id}">
-  //     <input type="checkbox" class="item-checkbox" ${active ? 'checked' : ''}>
-  //     <div class="item-content">
+   return `
+     <div class="item ${active ? '' : 'inactive'} priority-${priority}" data-item-id="${id}">
+       <input type="checkbox" class="item-checkbox" ${active ? 'checked' : ''}>
+       <div class="item-content">
   //       <h3 class="item-name">${name}</h3>
   //       ${description ? `<p class="item-description">${description}</p>` : ''}
   //       <div class="item-meta">
@@ -410,7 +412,7 @@ const renderItem = item => {
   //       <button class="btn-delete" title="Eliminar">🗑️</button>
   //     </div>
   //   </div>
-  // `;
+   `;
 };
 
 // ============================================
@@ -433,13 +435,13 @@ const renderItems = itemsToRender => {
   //    - Asigna a itemList.innerHTML
   //
   // EJEMPLO:
-  // if (itemsToRender.length === 0) {
-  //   itemList.innerHTML = '';
-  //   emptyState.style.display = 'block';
-  // } else {
-  //   emptyState.style.display = 'none';
-  //   itemList.innerHTML = itemsToRender.map(renderItem).join('');
-  // }
+   if (itemsToRender.length === 0) {
+     itemList.innerHTML = '';
+     emptyState.style.display = 'block';
+   } else {
+     emptyState.style.display = 'none';
+     itemList.innerHTML = itemsToRender.map(renderItem).join('');
+   }
 };
 
 /**
@@ -451,15 +453,15 @@ const renderStats = stats => {
   // Usa template literals para mostrar los números
   //
   // EJEMPLO:
-  // document.getElementById('stat-total').textContent = stats.total;
-  // document.getElementById('stat-active').textContent = stats.active;
-  // document.getElementById('stat-inactive').textContent = stats.inactive;
+   document.getElementById('stat-total').textContent = stats.total;
+   document.getElementById('stat-active').textContent = stats.active;
+   document.getElementById('stat-inactive').textContent = stats.inactive;
   //
   // // Renderiza estadísticas por categoría
-  // const categoryStats = Object.entries(stats.byCategory)
-  //   .map(([cat, count]) => `${getCategoryEmoji(cat)} ${CATEGORIES[cat]?.name ?? cat}: ${count}`)
-  //   .join(' | ');
-  // document.getElementById('stats-details').textContent = categoryStats;
+   const categoryStats = Object.entries(stats.byCategory)
+     .map(([cat, count]) => `${getCategoryEmoji(cat)} ${CATEGORIES[cat]?.name ?? cat}: ${count}`)
+     .join(' | ');
+   document.getElementById('stats-details').textContent = categoryStats;
 };
 
 // ============================================
@@ -477,33 +479,33 @@ const handleFormSubmit = e => {
   // Adapta los campos a tu dominio
   //
   // EJEMPLO:
-  // const name = document.getElementById('item-name').value.trim();
-  // const description = document.getElementById('item-description').value.trim();
-  // const category = document.getElementById('item-category').value;
-  // const priority = document.getElementById('item-priority').value;
-  // // Campos específicos del dominio:
-  // const magnitude = document.getElementById('item-magnitude')?.value ?? '';
+   const name = document.getElementById('item-name').value.trim();
+   const description = document.getElementById('item-description').value.trim();
+   const category = document.getElementById('item-category').value;
+   const priority = document.getElementById('item-priority').value;
+   // Campos específicos del dominio:
+   const magnitude = document.getElementById('item-magnitude')?.value ?? '';
 
   // TODO: Valida que el nombre no esté vacío
-  // if (!name) {
-  //   alert('El nombre es obligatorio');
-  //   return;
-  // }
+   if (!name) {
+     alert('El nombre es obligatorio');
+     return;
+   }
 
   // TODO: Crea el objeto con los datos
-  // const itemData = { name, description, category, priority };
+   const itemData = { name, description, category, priority, magnitude };
 
   // TODO: Si hay editingItemId, actualiza; si no, crea nuevo
-  // if (editingItemId) {
-  //   items = updateItem(editingItemId, itemData);
-  // } else {
-  //   items = createItem(itemData);
-  // }
+   if (editingItemId) {
+     items = updateItem(editingItemId, itemData);
+   } else {
+     items = createItem(itemData);
+   }
 
   // TODO: Resetea el formulario y re-renderiza
-  // resetForm();
-  // renderItems(applyCurrentFilters());
-  // renderStats(getStats(items));
+   resetForm();
+   renderItems(applyCurrentFilters());
+   renderStats(getStats(items));
 };
 
 /**
@@ -512,9 +514,9 @@ const handleFormSubmit = e => {
  */
 const handleItemToggle = itemId => {
   // TODO: Implementa el toggle
-  // items = toggleItemActive(itemId);
-  // renderItems(applyCurrentFilters());
-  // renderStats(getStats(items));
+   items = toggleItemActive(itemId);
+   renderItems(applyCurrentFilters());
+   renderStats(getStats(items));
 };
 
 /**
@@ -531,19 +533,19 @@ const handleItemEdit = itemId => {
   // 6. Guarda editingItemId
   //
   // EJEMPLO:
-  // const itemToEdit = items.find(item => item.id === itemId);
-  // if (!itemToEdit) return;
+   const itemToEdit = items.find(item => item.id === itemId);
+   if (!itemToEdit) return;
   //
-  // document.getElementById('item-name').value = itemToEdit.name;
-  // document.getElementById('item-description').value = itemToEdit.description ?? '';
-  // document.getElementById('item-category').value = itemToEdit.category;
-  // document.getElementById('item-priority').value = itemToEdit.priority;
+   document.getElementById('item-name').value = itemToEdit.name;
+   document.getElementById('item-description').value = itemToEdit.description ?? '';
+   document.getElementById('item-category').value = itemToEdit.category;
+   document.getElementById('item-priority').value = itemToEdit.priority;
   //
-  // document.getElementById('form-title').textContent = '✏️ Editar Elemento';
-  // document.getElementById('submit-btn').textContent = 'Actualizar';
-  // document.getElementById('cancel-btn').style.display = 'inline-block';
+   document.getElementById('form-title').textContent = '✏️ Editar Elemento';
+   document.getElementById('submit-btn').textContent = 'Actualizar';
+   document.getElementById('cancel-btn').style.display = 'inline-block';
   //
-  // editingItemId = itemId;
+   editingItemId = itemId;
 };
 
 /**
@@ -552,10 +554,10 @@ const handleItemEdit = itemId => {
  */
 const handleItemDelete = itemId => {
   // TODO: Implementa la eliminación con confirmación
-  // if (!confirm('¿Estás seguro de que deseas eliminar este elemento?')) return;
-  // items = deleteItem(itemId);
-  // renderItems(applyCurrentFilters());
-  // renderStats(getStats(items));
+  if (!confirm('¿Estás seguro de que deseas eliminar este elemento?')) return;
+  items = deleteItem(itemId);
+  renderItems(applyCurrentFilters());
+  renderStats(getStats(items));
 };
 
 /**
@@ -564,12 +566,12 @@ const handleItemDelete = itemId => {
  */
 const getCurrentFilters = () => {
   // TODO: Retorna un objeto con los valores actuales de los filtros
-  // return {
-  //   status: document.getElementById('filter-status').value,
-  //   category: document.getElementById('filter-category').value,
-  //   priority: document.getElementById('filter-priority').value,
-  //   search: document.getElementById('search-input').value
-  // };
+   return {
+     status: document.getElementById('filter-status').value,
+     category: document.getElementById('filter-category').value,
+     priority: document.getElementById('filter-priority').value,
+     search: document.getElementById('search-input').value
+   };
 };
 
 /**
@@ -586,8 +588,8 @@ const applyCurrentFilters = () => {
  */
 const handleFilterChange = () => {
   // TODO: Aplica filtros y re-renderiza
-  // const filteredItems = applyCurrentFilters();
-  // renderItems(filteredItems);
+  const filteredItems = applyCurrentFilters();
+  renderItems(filteredItems);
 };
 
 /**
@@ -595,11 +597,11 @@ const handleFilterChange = () => {
  */
 const resetForm = () => {
   // TODO: Limpia el formulario
-  // document.getElementById('item-form').reset();
-  // document.getElementById('form-title').textContent = '➕ Nuevo Elemento';
-  // document.getElementById('submit-btn').textContent = 'Crear';
-  // document.getElementById('cancel-btn').style.display = 'none';
-  // editingItemId = null;
+  document.getElementById('item-form').reset();
+  document.getElementById('form-title').textContent = '➕ Nuevo Elemento';
+  document.getElementById('submit-btn').textContent = 'Crear';
+  document.getElementById('cancel-btn').style.display = 'none';
+  editingItemId = null;
 };
 
 // ============================================
@@ -611,41 +613,41 @@ const resetForm = () => {
  */
 const attachEventListeners = () => {
   // TODO: Form submit
-  // document.getElementById('item-form').addEventListener('submit', handleFormSubmit);
+   document.getElementById('item-form').addEventListener('submit', handleFormSubmit);
 
   // TODO: Cancel button
-  // document.getElementById('cancel-btn').addEventListener('click', resetForm);
+   document.getElementById('cancel-btn').addEventListener('click', resetForm);
 
   // TODO: Filtros - cada cambio dispara handleFilterChange
-  // document.getElementById('filter-status').addEventListener('change', handleFilterChange);
-  // document.getElementById('filter-category').addEventListener('change', handleFilterChange);
-  // document.getElementById('filter-priority').addEventListener('change', handleFilterChange);
-  // document.getElementById('search-input').addEventListener('input', handleFilterChange);
+   document.getElementById('filter-status').addEventListener('change', handleFilterChange);
+   document.getElementById('filter-category').addEventListener('change', handleFilterChange);
+   document.getElementById('filter-priority').addEventListener('change', handleFilterChange);
+   document.getElementById('search-input').addEventListener('input', handleFilterChange);
 
   // TODO: Botón limpiar inactivos
-  // document.getElementById('clear-inactive').addEventListener('click', () => {
-  //   if (confirm('¿Eliminar todos los elementos inactivos?')) {
-  //     items = clearInactive();
-  //     renderItems(applyCurrentFilters());
-  //     renderStats(getStats(items));
-  //   }
-  // });
+   document.getElementById('clear-inactive').addEventListener('click', () => {
+     if (confirm('¿Eliminar todos los elementos inactivos?')) {
+       items = clearInactive();
+       renderItems(applyCurrentFilters());
+       renderStats(getStats(items));
+     }
+   });
 
   // TODO: Event delegation para la lista de elementos
-  // document.getElementById('item-list').addEventListener('click', e => {
-  //   const itemElement = e.target.closest('.item');
-  //   if (!itemElement) return;
+   document.getElementById('item-list').addEventListener('click', e => {
+     const itemElement = e.target.closest('.item');
+     if (!itemElement) return;
   //
-  //   const itemId = parseInt(itemElement.dataset.itemId);
+     const itemId = parseInt(itemElement.dataset.itemId);
   //
-  //   if (e.target.classList.contains('item-checkbox')) {
-  //     handleItemToggle(itemId);
-  //   } else if (e.target.classList.contains('btn-edit')) {
-  //     handleItemEdit(itemId);
-  //   } else if (e.target.classList.contains('btn-delete')) {
-  //     handleItemDelete(itemId);
-  //   }
-  // });
+     if (e.target.classList.contains('item-checkbox')) {
+       handleItemToggle(itemId);
+     } else if (e.target.classList.contains('btn-edit')) {
+       handleItemEdit(itemId);
+     } else if (e.target.classList.contains('btn-delete')) {
+       handleItemDelete(itemId);
+     }
+   });
 };
 
 // ============================================
@@ -664,11 +666,11 @@ const init = () => {
   // 5. Muestra mensaje de éxito en consola
   //
   // EJEMPLO:
-  // items = loadItems();
-  // renderItems(items);
-  // renderStats(getStats(items));
-  // attachEventListeners();
-  // console.log('✅ Aplicación inicializada correctamente');
+   items = loadItems();
+   renderItems(items);
+   renderStats(getStats(items));
+   attachEventListeners();
+   console.log('✅ Aplicación inicializada correctamente');
 };
 
 // Ejecutar cuando el DOM esté listo
