@@ -50,20 +50,20 @@ let editingItemId = null;
 // ============================================
 
 const CATEGORIES = {
+  therapy: { name: 'Terapéutica', emoji: '💬' },
   emotional: { name: 'Bienestar Emocional', emoji: '🧠' },
-  therapy: { name: 'Terapia y Consulta', emoji: '💬' },
-  meditation: { name: 'Meditación y Zen', emoji: '🧘' },
-  habits: { name: 'Hábitos y Rutinas', emoji: '🌱' },
-  sleep: { name: 'Descanso y Sueño', emoji: '🌙' },
+  therapy: { name: 'Terapia y Apoyo', emoji: '💬' },
+  mindfulness: { name: 'Meditación', emoji: '🧘' },
+  physical: { name: 'Salud Física', emoji: '🏃‍♂️' },
+  growth: { name: 'Crecimiento', emoji: '🌱' },
 };
 
-// Prioridades adaptadas al triaje de bienestar
+// Prioridades adaptadas
 const PRIORITIES = {
   high: { name: 'Urgente / Crisis', color: '#ef4444' },
   medium: { name: 'Seguimiento', color: '#f59e0b' },
   low: { name: 'Autocuidado', color: '#22c55e' },
 };
-
 
 // ============================================
 // TODO 2: PERSISTENCIA (LocalStorage)
@@ -74,31 +74,18 @@ const PRIORITIES = {
  * @returns {Array} Array de elementos guardados, o array vacío
  */
 const loadItems = () => {
-  // TODO: Implementa la carga desde localStorage
-  // 1. Obtén el valor de localStorage con la key de tu dominio
-  // 2. Si existe, usa JSON.parse() para convertirlo a array
-  // 3. Si no existe, retorna array vacío []
-  // 4. Usa el operador ?? para el valor por defecto
-  //
-  // EJEMPLO:
-  const stored = localStorage.getItem('celestialBodies');
-  return stored ? JSON.parse(stored) : [];
-  // O más moderno:
-  return JSON.parse(localStorage.getItem('celestialBodies') ?? '[]');
-};
+  const storedItems = localStorage.getItem('mentalHealthItems');
+  return storedItems ? JSON.parse(storedItems) : [];
+}
 
 /**
  * Guarda los elementos en LocalStorage
- * @param {Array} items - Array de elementos a guardar
+ * @param {Array} itemsToSave - Array de elementos a guardar
  */
-const saveItems = itemsToSave => {
-  // TODO: Implementa el guardado en localStorage
-  // 1. Usa JSON.stringify() para convertir el array a string
-  // 2. Guarda con localStorage.setItem()
-  //
-  // EJEMPLO:
-  localStorage.setItem('celestialBodies', JSON.stringify(itemsToSave));
-};
+
+const saveItems =  itemsToSave => {
+  localStorage.setItem('mentalHealthItems', JSON.stringify(itemsToSave));
+}
 
 // ============================================
 // TODO 3: CRUD - CREAR ELEMENTO
@@ -128,23 +115,23 @@ const createItem = (itemData = {}) => {
   // 5. Retorna el nuevo array
   //
   // EJEMPLO (Planetario):
-  // const newItem = {
-  //   id: Date.now(),
-  //   name: itemData.name ?? '',
-  //   description: itemData.description ?? '',
-  //   category: itemData.category ?? 'planet',
-  //   priority: itemData.priority ?? 'medium',
-  //   active: true,
-  //   createdAt: new Date().toISOString(),
-  //   updatedAt: null,
-  //   // Propiedades específicas del dominio:
-  //   magnitude: itemData.magnitude ?? 0,
-  //   distance: itemData.distance ?? '',
-  //   ...itemData
-  // };
-  // const newItems = [...items, newItem];
-  // saveItems(newItems);
-  // return newItems;
+    const newItem = {
+     id: Date.now(),
+     name: itemData.name ?? '',
+     description: itemData.description ?? '',
+     category: itemData.category ?? 'emotional',
+     priority: itemData.priority ?? 'seguimiento',
+     active: true,
+     createdAt: new Date().toISOString(),
+     updatedAt: null,
+     // Propiedades específicas del dominio:
+     magnitude: itemData.magnitude ?? 0,
+     distance: itemData.distance ?? '',
+     ...itemData
+   };
+   const newItems = [...items, newItem];
+   saveItems(newItems);
+   return newItems;
 };
 
 // ============================================
@@ -166,13 +153,13 @@ const updateItem = (id, updates) => {
   // 5. Retorna el nuevo array
   //
   // EJEMPLO:
-  // const updatedItems = items.map(item =>
-  //   item.id === id
-  //     ? { ...item, ...updates, updatedAt: new Date().toISOString() }
-  //     : item
-  // );
-  // saveItems(updatedItems);
-  // return updatedItems;
+  const updatedItems = items.map(item =>
+     item.id === id
+       ? { ...item, ...updates, updatedAt: new Date().toISOString() }
+       : item
+   );
+  saveItems(updatedItems);
+  return updatedItems;
 };
 
 // ============================================
@@ -191,9 +178,9 @@ const deleteItem = id => {
   // 3. Retorna el nuevo array
   //
   // EJEMPLO:
-  // const filteredItems = items.filter(item => item.id !== id);
-  // saveItems(filteredItems);
-  // return filteredItems;
+  const filteredItems = items.filter(item => item.id !== id);
+  saveItems(filteredItems);
+   return filteredItems;
 };
 
 // ============================================
