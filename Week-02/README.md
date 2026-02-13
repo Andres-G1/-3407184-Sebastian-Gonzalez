@@ -321,6 +321,155 @@ const byCategory = items.reduce((acc, item) => {
 1. **Código funcional** adaptado a tu dominio asignado
 2. **README personal** explicando tu implementación específica
 
+# 📌 README – Gestor de Bienestar Personal (Implementación Personal)
+## 👋 Descripción general
+
+Este proyecto es una aplicación web en JavaScript puro que permite gestionar elementos relacionados con el bienestar personal y salud mental.
+Como objetivo de este era poder crear, editar, marcar como activos/inactivos y filtrar actividades o recursos de autocuidado, terapia y crecimiento personal.
+
+La aplicación funciona completamente en el navegador y guarda la información usando LocalStorage, por lo que los datos se mantienen aunque se cierre la página.
+
+## 🧠 Dominio: Bienestar y Salud Mental
+
+Actividades de autocuidado
+
+Recordatorios de terapia
+
+Ejercicios de meditación
+
+Hábitos de salud física
+
+Objetivos de crecimiento personal
+
+Cada elemento representa una acción o recurso que ayuda al bienestar del usuario.
+
+## 🗂️ Categorías personalizadas
+
+Definí las siguientes categorías en el archivo script.js:
+
+* 🧠 Bienestar Emocional
+
+* 💬 Terapia y Apoyo
+
+* 🧘 Meditación
+
+* 🏃‍♂️ Salud Física
+
+* 🌱 Crecimiento Personal
+
+Cada categoría tiene su nombre y su emoji para mejorar la experiencia visual.
+
+## 🚦 Prioridades personalizadas
+
+Las prioridades fueron adaptadas al contexto de bienestar:
+
+* 🔴 Urgente / Crisis
+
+* 🟠 Seguimiento
+
+* 🟢 Autocuidado
+
+Esto permite identificar rápidamente qué elementos requieren más atención.
+
+* ⚙️ Funcionalidades implementadas
+* ✔️ CRUD completo
+
+Crear nuevos elementos
+
+Editar elementos existentes
+
+Eliminar elementos
+
+Marcar elementos como activos o inactivos
+
+## 💾 Persistencia
+
+Uso de LocalStorage para guardar los datos del usuario.
+
+## 🔍 Filtros y búsqueda
+
+Filtro por estado: todos / activos / inactivos
+
+Filtro por categoría
+
+Filtro por prioridad
+
+Búsqueda por nombre y descripción
+
+## 📊 Estadísticas
+
+Total de elementos
+
+Cantidad de activos
+
+Cantidad de inactivos
+
+Conteo por categoría
+
+## 🖥️ Interfaz
+
+La interfaz es simple y clara:
+
+Formulario para crear y editar elementos
+
+Lista dinámica que se actualiza en tiempo real
+
+Badges con colores y emojis
+
+Estadísticas visibles para ver el progreso
+```
+📁 Estructura del proyecto
+/Week-02
+│── index.html
+│── styles.css
+│── README.md
+│── Img 📁
+│        │── img1.png
+│        │── img2.png
+│        └── img3.png   
+└── Starter 📁
+         └── script.js
+```
+## ▶️ Cómo usar el proyecto
+
+Abrir index.html en el navegador
+
+Crear un nuevo elemento desde el formulario
+
+Usar los filtros para organizar los elementos
+
+Editar o eliminar según sea necesario
+
+Los datos se guardan automáticamente
+
+## ✍️ Personalización realizada
+
+Dominio cambiado de ejemplo genérico a bienestar personal
+
+Categorías y prioridades adaptadas al contexto emocional
+
+Textos de la interfaz en español
+
+Uso de emojis para mejorar la claridad visual
+
+## 🧩 Conclusión
+
+Este proyecto muestra la aplicación práctica de:
+
+Manejo de estado en JavaScript
+
+Funciones puras (map, filter, reduce)
+
+Persistencia en LocalStorage
+
+Manipulación del DOM
+
+Separación de lógica y renderizado
+
+Además, el dominio lo hace útil para organizar actividades de autocuidado y apoyo emocional en la vida diaria.
+
+
+#
 3. **Capturas de pantalla** de la aplicación funcionando
 
 ![Screenshot 1](Img/img1.png)
