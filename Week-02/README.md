@@ -320,7 +320,15 @@ const byCategory = items.reduce((acc, item) => {
 
 1. **Código funcional** adaptado a tu dominio asignado
 2. **README personal** explicando tu implementación específica
+
 3. **Capturas de pantalla** de la aplicación funcionando
+
+![Screenshot 1](Img/img1.png)
+
+![Screenshot 2](Img/img2.png)
+
+![Screenshot 3](Img/img3.png)
+
 4. **Todo el código debe usar**:
    - Nomenclatura técnica en inglés
    - Comentarios en español

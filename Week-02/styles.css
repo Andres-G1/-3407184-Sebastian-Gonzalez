@@ -510,3 +510,11 @@ body {
     justify-content: flex-end;
   }
 }
+
+.items-section {
+  background: var(--color-white);
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  margin-bottom: 2rem;
+}

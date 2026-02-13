@@ -50,7 +50,6 @@ let editingItemId = null;
 // ============================================
 
 const CATEGORIES = {
-  therapy: { name: 'Terapéutica', emoji: '💬' },
   emotional: { name: 'Bienestar Emocional', emoji: '🧠' },
   therapy: { name: 'Terapia y Apoyo', emoji: '💬' },
   mindfulness: { name: 'Meditación', emoji: '🧘' },
@@ -399,19 +398,19 @@ const renderItem = item => {
      <div class="item ${active ? '' : 'inactive'} priority-${priority}" data-item-id="${id}">
        <input type="checkbox" class="item-checkbox" ${active ? 'checked' : ''}>
        <div class="item-content">
-  //       <h3 class="item-name">${name}</h3>
-  //       ${description ? `<p class="item-description">${description}</p>` : ''}
-  //       <div class="item-meta">
-  //         <span class="badge badge-category">${getCategoryEmoji(category)} ${CATEGORIES[category]?.name ?? category}</span>
-  //         <span class="badge badge-priority priority-${priority}">${PRIORITIES[priority]?.name ?? priority}</span>
-  //         <span class="item-date">📅 ${formatDate(createdAt)}</span>
-  //       </div>
-  //     </div>
-  //     <div class="item-actions">
-  //       <button class="btn-edit" title="Editar">✏️</button>
-  //       <button class="btn-delete" title="Eliminar">🗑️</button>
-  //     </div>
-  //   </div>
+         <h3 class="item-name">${name}</h3>
+         ${description ? `<p class="item-description">${description}</p>` : ''}
+         <div class="item-meta">
+           <span class="badge badge-category">${getCategoryEmoji(category)} ${CATEGORIES[category]?.name ?? category}</span>
+           <span class="badge badge-priority priority-${priority}">${PRIORITIES[priority]?.name ?? priority}</span>
+           <span class="item-date">📅 ${formatDate(createdAt)}</span>
+         </div>
+       </div>
+       <div class="item-actions">
+         <button class="btn-edit" title="Editar">✏️</button>
+         <button class="btn-delete" title="Eliminar">🗑️</button>
+       </div>
+     </div>
    `;
 };
 
