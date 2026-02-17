@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>📦 Sistema de Gestión | Salud Mental</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <header class="header">
+        <h1>🧠 Sistema de Salud Mental y Bienestar</h1>
+        <p class="subtitle">Gestión de recursos y usuarios</p>
+      </header>
+
+      <nav class="tabs">
+        <button class="tab-btn active" data-tab="catalog">📋 Catálogo</button>
+        <button class="tab-btn" data-tab="users">👥 Usuarios</button>
+        <button class="tab-btn" data-tab="stats">📊 Estadísticas</button>
+      </nav>
+
+      <main class="tab-content">
+        <section id="catalog" class="tab-panel active">
+          <div class="panel-header">
+            <h2>📋 Catálogo de Recursos</h2>
+            <div class="actions">
+              <input type="text" id="search-input" placeholder="Buscar por nombre..." />
+
+              <select id="filter-type">
+                <option value="all">Todos los tipos</option>
+                <option value="TherapySession">TherapySession</option>
+                <option value="SupportGroup">SupportGroup</option>
+                <option value="MeditationProgram">MeditationProgram</option>
+              </select>
+
+              <select id="filter-status">
+                <option value="all">Todos</option>
+                <option value="active">Activos</option>
+                <option value="inactive">Inactivos</option>
+              </select>
+
+              <button id="add-item-btn" class="btn btn-primary">+ Agregar</button>
+            </div>
+          </div>
+
+          <div id="item-list" class="items-grid"></div>
+        </section>
+
+        <section id="users" class="tab-panel">
+          <div class="panel-header">
+ <!-- ============================================
+     MÓDULO DE USUARIOS
+============================================ -->
+<section class="users-section">
+  <div class="users-header">
+    <h2>👥 Usuarios</h2>
+    <button class="btn btn-primary" id="add-user-btn">➕ Nuevo Usuario</button>
+  </div>
+
+  <div id="user-list" class="user-list">
+    <!-- Usuarios renderizados por JS -->
+  </div>
+</section>
+
+<!-- ============================================
+     MODAL DE USUARIOS
+============================================ -->
+<div id="user-modal" class="modal-overlay" style="display:none;">
+  <div class="modal-content">
+    <button id="close-user-modal" class="modal-close">✖</button>
+
+    <h3>➕ Crear Usuario</h3>
+
+    <form id="user-form" class="user-form">
+      <div class="form-group">
+        <label>Tipo de usuario</label>
+        <select name="type" required>
+          <option value="">Selecciona...</option>
+          <option value="Client">Cliente</option>
+          <option value="Therapist">Terapeuta</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Nombre</label>
+        <input type="text" name="name" required />
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" name="email" required />
+      </div>
+
+      <div class="form-group" id="therapist-fields" style="display:none;">
+        <label>Especialidad (solo terapeutas)</label>
+        <input type="text" name="specialty" />
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="button" class="btn btn-secondary" id="cancel-user-btn">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+          <div id="user-list" class="user-list"></div>
+        </section>
+
+        <section id="stats" class="tab-panel">
+          <h2>📊 Estadísticas</h2>
+          <div id="stats"></div>
+        </section>
+      </main>
+
+      <!-- MODAL ITEM -->
+      <div id="item-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>Agregar Recurso</h3>
+            <button id="close-modal">&times;</button>
+          </div>
+
+          <form id="item-form">
+            <!-- 🔥 FIX CLAVE: name="type" -->
+            <select id="item-type" name="type" required>
+              <option value="">Selecciona tipo</option>
+              <option value="TherapySession">TherapySession</option>
+              <option value="SupportGroup">SupportGroup</option>
+              <option value="MeditationProgram">MeditationProgram</option>
+            </select>
+
+            <!-- 🔥 FIX CLAVE: name="name" -->
+            <input type="text" id="item-name" name="name" placeholder="Nombre" required />
+
+            <!-- 🔥 FIX CLAVE: name="location" -->
+            <input type="text" id="item-location" name="location" placeholder="Ubicación" required />
+
+            <!-- CAMPOS ESPECÍFICOS -->
+            <input type="text" name="therapistName" placeholder="Nombre terapeuta (TherapySession)" />
+            <input type="number" name="durationMinutes" placeholder="Duración en minutos" />
+
+            <input type="text" name="topic" placeholder="Tema (SupportGroup)" />
+            <input type="number" name="maxParticipants" placeholder="Máx participantes" />
+
+            <input type="text" name="level" placeholder="Nivel (MeditationProgram)" />
+            <input type="number" name="sessionsCount" placeholder="Cantidad de sesiones" />
+
+            <button type="submit">Guardar</button>
+            <button type="button" id="cancel-btn">Cancelar</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- MODAL USER -->
+      <div id="user-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>Agregar Usuario</h3>
+            <button id="close-user-modal">&times;</button>
+          </div>
+
+          <form id="user-form">
+            <select id="user-role">
+              <option value="Client">Cliente</option>
+              <option value="Therapist">Terapeuta</option>
+            </select>
+
+            <input type="text" id="user-name" placeholder="Nombre" required />
+            <input type="email" id="user-email" placeholder="Email" required />
+
+            <button type="submit">Guardar</button>
+            <button type="button" id="cancel-user-btn">Cancelar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="starter/script.js"></script>
+  </body>
+</html>
