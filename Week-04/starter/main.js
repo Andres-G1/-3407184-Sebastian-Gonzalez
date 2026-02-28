@@ -3,24 +3,6 @@
  * PROYECTO SEMANA 04 - SISTEMA MODULAR ES6
  * Punto de entrada principal de la aplicación
  * ============================================
- *
- * INSTRUCCIONES:
- * 1. Lee el README.md del proyecto para entender la estructura
- * 2. Adapta TODOS los módulos a tu dominio asignado
- * 3. Usa import/export ES6 en todos los archivos
- * 4. Implementa dynamic imports para features
- * 5. Comentarios en español, nomenclatura en inglés
- *
- * NOTA IMPORTANTE:
- * Este proyecto usa arquitectura modular.
- * Debes adaptar TODOS los módulos a tu dominio.
- *
- * EJEMPLO (Planetario - NO asignable):
- * - Product.js → CelestialBody.js
- * - inventory.js → observatory.js
- * - CATEGORIES: planet, star, satellite
- *
- * ============================================
  */
 
 // ============================================
@@ -54,14 +36,16 @@ const init = () => {
     const items = manager.init();
 
     // 2. Renderizar opciones de categoría en los selectores del DOM
-const categorySelects = [
-  document.getElementById('category'),        // Formulario de agregar
-  document.getElementById('filter-category'), // Filtro de búsqueda
-  document.getElementById('edit-category')    // Modal de edición
-];
-renderCategoryOptions(categorySelects);
+    const categorySelects = [
+      document.getElementById('category'),         // Formulario de agregar
+      document.getElementById('filter-category'),  // Filtro de búsqueda
+      document.getElementById('edit-category')     // Modal de edición
+    ];
+    renderCategoryOptions(categorySelects);
+
     // 3. Renderizar la lista inicial de elementos
-    const tableContainer = document.getElementById('inventory-body');
+    // CORREGIDO: el ID en el HTML es 'products-body', no 'inventory-body'
+    const tableContainer = document.getElementById('products-body');
     renderItems(items, tableContainer);
 
     // 4. Actualizar contador global de insumos
@@ -86,7 +70,6 @@ renderCategoryOptions(categorySelects);
  */
 const loadReports = async () => {
   try {
-    // Importación dinámica (Lazy Loading) para ahorrar recursos iniciales
     const { generateStats } = await import('./features/reports.js');
 
     const items = manager.getAll();
@@ -118,8 +101,8 @@ const loadExport = async (format = 'json') => {
     } else {
       exportModule.exportJSON(items);
     }
-    
-    console.log(`📤 Inventario exportado exitosamente en formato ${format.toUpperCase()}`);
+
+    console.log(`📤 Inventario exportado en formato ${format.toUpperCase()}`);
   } catch (error) {
     console.error(`Error cargando módulo de exportación (${format}):`, error);
   }
@@ -128,7 +111,9 @@ const loadExport = async (format = 'json') => {
 // ============================================
 // EJECUTAR CUANDO EL DOM ESTÉ LISTO
 // ============================================
-document.addEventListener('DOMContentLoaded', init);
+// Los módulos ES6 se ejecutan después de que el DOM está listo,
+// por lo que DOMContentLoaded no es necesario. Llamamos init() directamente.
+init();
 
 // ============================================
 // EXPORTAR FUNCIONES PARA USO EXTERNO
