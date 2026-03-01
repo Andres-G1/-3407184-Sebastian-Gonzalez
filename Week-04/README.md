@@ -294,6 +294,166 @@ document.getElementById('reports-btn').addEventListener('click', async () => {
 1. **Código modular** con estructura de carpetas correcta
 2. **Todos los archivos** usando import/export ES6
 3. **README personal** documentando tu implementación
+Sistema de gestión de inventario para un centro de salud mental, Implementa arquitectura modular con ES6 Modules, Dynamic Imports y persistencia en localStorage.
+
+---
+
+## ⚙️ Configuración (`config.js`)
+
+En config.js nos encargamos de definir las constantes globales de la aplicación.
+
+```js
+export const APP_CONFIG = {
+  name: 'Sistem_Health_Center',
+  version: '1.0.0',
+  storageKey: 'shc_inventory_items',
+};
+```
+
+### Categorías disponibles
+
+| ID | Nombre | Icono |
+|----|--------|-------|
+| `clinical_supplies` | Material Clínico | 📋 |
+| `medication` | Psiquiatría | 💊 |
+| `therapeutic_tools` | Herramientas Terapéuticas | 🧸 |
+| `office_equipment` | Mobiliario y Equipo | 💺 |
+| `educational_material` | Psicoeducación | 📚 |
+| `other` | Otros Recursos | 📌 |
+
+### Umbrales de stock
+
+| Umbral | Valor | Descripción |
+|--------|-------|-------------|
+| `low` | 20 | Alerta preventiva |
+| `critical` | 10 | Riesgo de desabastecimiento |
+
+---
+
+## 🧩 Módulos
+
+### `models/Product.js`
+La clase que representa un insumo del inventario.
+
+**Propiedades:** `id`, `name`, `category`, `price`, `quantity`, `createdAt`, `updatedAt`
+
+**Getters:**
+- `totalValue` — precio × cantidad
+- `isLowStock` — true si quantity está entre 1 y el umbral `low`
+- `isOutOfStock` — true si quantity es 0
+
+**Métodos:**
+- `update(data)` — actualiza campos y el timestamp `updatedAt`
+- `toJSON()` — serializa a objeto plano para localStorage
+- `Product.fromJSON(data)` — reconstruye una instancia desde localStorage
+
+---
+
+### `services/inventory.js`
+Gestionar el estado del inventario en memoria y la persistencia.
+
+| Función | Descripción |
+|---------|-------------|
+| `init()` | Carga productos desde localStorage |
+| `getAll()` | Retorna copia del array de productos |
+| `getById(id)` | Busca un producto por ID |
+| `add(data)` | Crea y guarda un nuevo producto |
+| `update(id, data)` | Modifica un producto existente |
+| `remove(id)` | Elimina un producto |
+| `filter({ search, category, stockFilter })` | Filtra productos por criterios |
+
+---
+
+### `services/storage.js`
+Abstracción sobre `localStorage`.
+
+| Función | Descripción |
+|---------|-------------|
+| `save(key, data)` | Serializa y guarda datos |
+| `load(key)` | Carga y parsea datos |
+| `remove(key)` | Elimina una clave |
+| `clear()` | Limpia los datos de la app |
+
+---
+
+### `features/reports.js` ⚡ Lazy Loaded
+Carga bajo demanda al hacer clic en "Cargar Reportes".
+
+| Función | Descripción |
+|---------|-------------|
+| `generateStats(products)` | Genera estadísticas generales |
+| `getLowStockProducts(products)` | Filtra productos con stock bajo |
+| `groupByCategory(products)` | Agrupa productos por categoría |
+| `getTopByValue(products, limit)` | Top productos por valor total |
+| `getCategoryBreakdown(products)` | Desglose porcentual por categoría |
+
+---
+
+### `features/export.js` ⚡ Lazy Loaded
+Se carga bajo demanda para exportar el inventario.
+
+| Función | Descripción |
+|---------|-------------|
+| `exportJSON(products)` | Descarga el inventario como `.json` |
+| `exportCSV(products)` | Descarga el inventario como `.csv` |
+
+---
+
+### `ui/render.js`
+Funciones que manipulan el DOM.
+
+| Función | Descripción |
+|---------|-------------|
+| `renderProducts(products, container)` | Dibuja la tabla de productos |
+| `renderCategoryOptions(selects)` | Puebla los `<select>` de categorías |
+| `updateProductCount(count)` | Actualiza el badge contador |
+| `renderReports(stats, container)` | Muestra tarjetas de estadísticas |
+| `showNotification(message, type)` | Notificación temporal en pantalla |
+
+---
+
+### `ui/events.js`
+Inicializa y maneja todos los eventos de la UI.
+
+| Función | Descripción |
+|---------|-------------|
+| `initEvents()` | Registra todos los event listeners |
+| `handleFormSubmit(event)` | Alta de nuevo producto |
+| `handleEditSubmit(event)` | Guardar edición desde el modal |
+| `handleFilterChange()` | Re-renderiza con filtros aplicados |
+| `handleTableAction(event)` | Delegación para editar/eliminar |
+| `handleLoadReports()` | Dynamic import del módulo de reportes |
+| `openModal(product)` | Abre el modal de edición |
+| `closeModal()` | Cierra el modal |
+
+---
+
+### `utils/validators.js`
+
+| Función | Descripción |
+|---------|-------------|
+| `validateProduct(data)` | Retorna `{ isValid, errors }` |
+| `isValidPrice(value)` | Valida precio >= 0 |
+| `isValidQuantity(value)` | Valida entero >= 0 |
+| `sanitize(input)` | Escapa caracteres especiales (XSS) |
+
+---
+
+### `utils/formatters.js`
+
+| Función | Descripción |
+|---------|-------------|
+| `formatPrice(price, currency)` | Formato moneda con `Intl` |
+| `formatDate(date)` | Formato fecha/hora con `Intl` |
+| `formatStock(quantity, options)` | Retorna texto y clase CSS según stock |
+| `truncate(text, maxLength)` | Corta texto con `...` |
+
+---
+
+## 🚀 Cómo ejecutar el proyecto
+
+> ⚠️ Este proyecto usa ES6 Modules y **requiere un servidor local**. No funciona abriendo el archivo directamente con doble clic, para hacer eso en este caso usamos live servers y de ese modo pudimos ejecutar el index y que funcionara todo correctamente.
+
 4. **Todo el código debe usar**:
    - Nomenclatura técnica en inglés
    - Comentarios en español
