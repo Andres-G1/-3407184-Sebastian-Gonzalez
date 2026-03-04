@@ -1,15 +1,6 @@
-# 🏛️ Proyecto Semanal: Ficha de Información Interactiva
+# 🏛️ Proyecto Semana 1: Ficha de Presentación de Dominio
 
-> **🎯 ÚNICO ENTREGABLE**: Este proyecto es el **único entregable obligatorio** para aprobar la Semana 1. Debe demostrar tu dominio de todos los conceptos aprendidos.
-
-## 🎯 Objetivos del Proyecto
-
-Crear una aplicación web interactiva que muestre una ficha de información de tu dominio asignado, aplicando todos los conceptos aprendidos en la Semana 1:
-
-- ✅ Variables modernas (`const` y `let`)
-- ✅ Template literals para contenido dinámico
-- ✅ Arrow functions para eventos y lógica
-- ✅ Destructuring para manejo de datos
+> **🎯 ÚNICO ENTREGABLE**: Este proyecto es el **único entregable obligatorio** para aprobar la Semana 1.
 
 ---
 
@@ -17,385 +8,166 @@ Crear una aplicación web interactiva que muestre una ficha de información de t
 
 **Dominio**: [El instructor te asignará tu dominio al inicio del trimestre]
 
-> **IMPORTANTE**: Cada aprendiz tiene un dominio único asignado por el instructor. NO copies la implementación de otro compañero. Tu código debe reflejar tu dominio específico.
+> ⚠️ **POLÍTICA ANTICOPIA**: Cada aprendiz tiene un **dominio único**. Tu código debe reflejar tu dominio específico. Una implementación copiada o no adaptada resulta en calificación de cero.
 
 ---
 
-## 💡 Estructura de Datos Esperada
+## 🎯 Objetivo
 
-Independientemente de tu dominio, tu ficha debe incluir:
+Construir un script JavaScript que se ejecute en Node.js y muestre en la consola una **ficha de presentación** de una entidad de tu dominio asignado, aplicando todo lo aprendido esta semana: `console.log()`, tipos primitivos (string, number, boolean) y comentarios.
 
-### Datos Requeridos
+No necesitas variables todavía (esas llegan la semana próxima). Solo `console.log()`, tipos de datos, expresiones y comentarios bien estructurados.
 
-| Tipo | Descripción | Ejemplo (Planetario - NO asignable) |
-|------|-------------|-------------------------------------|
-| **Información básica** | Nombre, descripción, identificador | nombre: "Sistema Solar Interactivo", código: "EXH-001" |
-| **Propiedades específicas** | Datos propios del dominio | ubicación, capacidad, estado |
-| **Array de elementos** | Lista de items relacionados con nivel/valor | características, servicios, componentes |
-| **Estadísticas** | Contadores y métricas numéricas | visitantes, rating, duración |
+---
 
-### Ejemplo de Estructura (Planetario)
+## 📋 Descripción
 
-```javascript
-const exhibitData = {
-  name: 'Sistema Solar Interactivo',
-  description: 'Exhibición inmersiva del sistema solar',
-  code: 'EXH-001',
-  location: { room: 'Sala Principal', floor: 2 },
-  features: [
-    { name: 'Proyección 360°', level: 95 },
-    { name: 'Audio envolvente', level: 88 }
-  ],
-  stats: { visitors: 15000, rating: 4.8, duration: 45 }
-};
+Vas a construir un "carnet digital de consola" para tu dominio asignado. El script debe mostrar información organizada sobre **una entidad principal de tu dominio**: libro, medicamento, miembro del gimnasio, plato de menú, cuenta bancaria, etc.
+
+Adapta cada sección al contexto de tu dominio. Si no sabes cuál es tu dominio, pregunta a tu instructor.
+
+---
+
+## ✅ Requisitos
+
+### Requisitos de contenido (adaptados a tu dominio)
+
+El script debe mostrar **como mínimo**:
+
+1. Nombre de la **entidad principal** de tu dominio (string)
+2. Identificador o código único (string o number)
+3. Descripción o categoría (string)
+4. Al menos **un dato numérico** relevante al dominio (number)
+5. Al menos **dos valores boolean** que representen estados de la entidad
+6. Una **expresión aritmética** calculada (ej: precio con descuento, total, capacidad restante)
+7. Una sección de **resumen del dominio**
+
+### Requisitos técnicos
+
+- [ ] El archivo se llama `script.js` y corre con `node script.js`
+- [ ] Usa `console.log()` para toda la salida
+- [ ] Incluye como mínimo **3 comentarios** que expliquen secciones del código
+- [ ] La salida está organizada con separadores visuales (líneas de `-` o `=`)
+- [ ] Los comentarios están escritos en **español**
+- [ ] No hay errores al ejecutar con `node`
+
+---
+
+## 💡 Ejemplo de salida esperada
+
+> **Nota**: El ejemplo usa "Planetario" porque **NO es un dominio asignable**. Adapta la estructura a tu dominio asignado.
+
+```
+=========================================
+    PLANETARIO MUNICIPAL - FICHA #001
+=========================================
+
+INFORMACIÓN GENERAL
+--------------------
+Nombre:          Sistema Solar en 3D
+Código:          EXH-001
+Categoría:       Astronomía - Nivel básico
+Estado:          Activo
+
+DETALLES
+--------------------
+Capacidad:       45 personas
+Duración (min):  50
+Precio:          12000
+Con descuento:   9600
+Disponible:      true
+Accesible:       true
+
+RESUMEN DEL DOMINIO
+--------------------
+Dominio:         Planetario
+Entidad:         Exhibición
+Total registros: 12
+
+=========================================
+  Ficha generada con JavaScript ES2023
+=========================================
 ```
 
-> **Nota**: El ejemplo usa "Planetario" porque NO es un dominio asignable. Adapta esta estructura a tu dominio asignado.
+---
+
+## 💡 Ejemplos de Adaptación por Dominio
+
+| Si tu dominio es... | Tu entidad principal es...   | Datos numéricos relevantes           |
+| ------------------- | ---------------------------- | ------------------------------------ |
+| Biblioteca          | Libro                        | páginas, año publicación, ejemplares |
+| Farmacia            | Medicamento                  | precio, stock, dosis                 |
+| Gimnasio            | Miembro o rutina             | días, repeticiones, peso             |
+| Restaurante         | Platillo                     | precio, calorías, tiempo preparación |
+| Banco               | Cuenta o producto financiero | saldo, tasa, plazo                   |
+| Hospital            | Paciente o servicio médico   | habitación, duración, costo          |
 
 ---
 
-## 🎨 Características Requeridas
-
-### Funcionalidades Obligatorias
-
-1. **Información Principal de tu Dominio**
-   - Datos básicos de la entidad (nombre, identificador, etc.)
-   - Descripción o detalles relevantes
-   - Propiedades específicas del dominio
-
-2. **Lista de Elementos Relacionados**
-   - Array de elementos (ej: habilidades, características, servicios)
-   - Nivel o porcentaje cuando aplique
-   - Categorías o tipos
-
-3. **Estadísticas**
-   - Contadores relevantes al dominio
-   - Cálculos usando métodos de array
-
-4. **Interactividad**
-   - Botón para cambiar tema (claro/oscuro)
-   - Botón para copiar información al portapapeles
-   - Botón para mostrar/ocultar sección
-
-5. **Notificaciones**
-   - Toast/mensaje de confirmación para acciones
-
----
-
-## 📁 Estructura de Archivos
+## 📁 Estructura del Proyecto
 
 ```
 3-proyecto/
-├── README.md           # Este archivo con instrucciones
-├── index.html          # Estructura HTML (completa)
-├── styles.css          # Estilos CSS (completo)
-├── starter/
-│   └── script.js       # Archivo inicial con TODOs
-└── solution/
-    └── script.js       # Solución de referencia
-```
-
-> **📌 Nota Pedagógica**: La carpeta `solution/` está **excluida del repositorio de GitHub** (`.gitignore`). Debes completar los ejercicios por ti mismo.
-
----
-
-## 🚀 Instrucciones
-
-### Paso 1: Identificar tu Dominio
-
-Revisa con tu instructor cuál es tu dominio asignado para el trimestre.
-
-### Paso 2: Planificar tu Estructura de Datos
-
-Basándote en tu dominio, define:
-- ¿Qué entidad principal representarás? Plataforma de salud mental.
-- ¿Qué propiedades tiene esa entidad? Salud Mental y Bienestar.
-- ¿Qué elementos relacionados tiene (array)? los programas ofrecidos y sus características de disponibilidad.
-- ¿Qué estadísticas son relevantes? los servicios con los que cuenta.
-
-### Paso 3: Completar los TODOs en script.js
-
-Abre `starter/script.js` y completa todos los TODOs marcados, adaptándolos a tu dominio.
-
-### Paso 4: Aplicar Conceptos ES2023
-
-Asegúrate de usar:
-- `const` para valores que no cambian
-- `let` para valores que sí cambian
-- Template literals para strings
-- Arrow functions para todas las funciones
-- Destructuring para extraer datos
-
-### Paso 5: Probar la Funcionalidad
-
-Abre `index.html` en el navegador y verifica que todo funcione.
-
----
-
-## 📝 TODOs a Completar
-
-### 1. Datos de tu Dominio (Destructuring)
-```javascript
-// TODO: Crear objeto con datos de tu dominio
-// TODO: Extraer datos usando destructuring
-```
-
-### 2. Renderizar Información (Template Literals)
-```javascript
-// TODO: Crear HTML dinámico con template literals
-```
-
-### 3. Event Listeners (Arrow Functions)
-```javascript
-// TODO: Agregar event listeners con arrow functions
-```
-
-### 4. Calcular Estadísticas (Array Methods + Arrows)
-```javascript
-// TODO: Calcular estadísticas usando map, reduce, filter
-```
-
-### 5. Toggle Theme (Variables + Funciones)
-```javascript
-// TODO: Implementar cambio de tema claro/oscuro
+├── README.md         ← Este archivo
+└── starter/
+    └── script.js     ← Tu punto de partida
 ```
 
 ---
 
-## ✅ Criterios de Evaluación
+## 🛠️ Cómo Empezar
 
-### Funcionalidad (40%)
-- [ ] Muestra correctamente toda la información del dominio
-- [ ] Los botones son interactivos
-- [ ] Cambio de tema funciona
-- [ ] Estadísticas se calculan correctamente
-- [ ] Copiar información funciona
-
-### Código ES2023 (30%)
-- [ ] Usa `const` por defecto, `let` solo cuando necesario
-- [ ] Template literals en lugar de concatenación
-- [ ] Arrow functions en lugar de `function`
-- [ ] Destructuring aplicado correctamente
-- [ ] Sin uso de `var`
-
-### Código Limpio (20%)
-- [ ] Código bien indentado
-- [ ] Nombres de variables descriptivos en inglés
-- [ ] Comentarios explicativos en español
-- [ ] Sin código duplicado
-- [ ] Estructura lógica y organizada
-
-### Adaptación al Dominio (10%)
-- [ ] Datos coherentes con el dominio asignado
-- [ ] Propiedades específicas del dominio
-- [ ] Implementación original (no copiada)
-
-**Calificación Total**: 100%
-**Mínimo para Aprobar**: 70%
+1. **Confirma tu dominio** con el instructor
+2. Abre `starter/script.js`
+3. Lee los comentarios y TODOs
+4. Adapta cada TODO al contexto de **tu** dominio asignado
+5. Ejecuta para verificar: `node starter/script.js`
+6. Ajusta el formato hasta que la salida sea legible y organizada
 
 ---
 
-## 🎨 Bonus (Opcional)
-
-Si terminas antes y quieres un desafío extra:
-
-1. **Validación de Datos**
-   - Validar información antes de copiar
-
-2. **Persistencia**
-   - Guardar tema preferido en localStorage
-
-3. **Animaciones**
-   - Transiciones suaves al cambiar tema
-
-4. **Responsive**
-   - Mejorar diseño mobile
-
----
-
-## 🧪 Cómo Probar
-
-### 1. Abrir en Navegador
+## 🏃 Cómo Ejecutar
 
 ```bash
-# Opción 1: Doble click en index.html
-
-# Opción 2: Con Live Server (VS Code extension)
-# Click derecho en index.html → Open with Live Server
-
-# Opción 3: Python simple server
-python -m http.server 8000
-# Abrir http://localhost:8000
+cd bootcamp/week-01/3-proyecto
+node starter/script.js
 ```
-
-### 2. Verificar Consola
-
-Abre las DevTools (F12) y verifica que no haya errores.
-
-### 3. Probar Funcionalidades
-
-- ✅ Click en "Copiar Información"
-- ✅ Click en cambio de tema
-- ✅ Click en "Mostrar más" / "Mostrar menos"
-- ✅ Verificar estadísticas correctas
 
 ---
 
-## 📚 Recursos de Ayuda
+## 📊 Criterios de Evaluación
 
-- [Teoría Week-01](../1-teoria/)
-- [Ejercicios Prácticos](../2-practicas/)
-- [MDN: JavaScript](https://developer.mozilla.org/es/docs/Web/JavaScript)
+| Criterio                                 | Puntos      |
+| ---------------------------------------- | ----------- |
+| El script corre sin errores              | 20 pts      |
+| Muestra los 7 datos requeridos           | 25 pts      |
+| Al menos 3 comentarios en español        | 15 pts      |
+| Salida organizada y legible              | 15 pts      |
+| Usa string, number Y boolean             | 15 pts      |
+| Adaptación coherente al dominio asignado | 10 pts      |
+| **Total**                                | **100 pts** |
 
----
-
-## 💡 Pistas
-
-<details>
-<summary>Pista 1: Destructuring de objeto</summary>
-
-```javascript
-const {
-  name,
-  description,
-  details: { property1, property2 },
-  items
-} = entityData;
-```
-</details>
-
-<details>
-<summary>Pista 2: Template Literals para HTML</summary>
-
-```javascript
-const html = `
-  <div class="card">
-    <h2>${name}</h2>
-    <p>${description}</p>
-  </div>
-`;
-```
-</details>
-
-<details>
-<summary>Pista 3: Arrow Functions para Events</summary>
-
-```javascript
-button.addEventListener('click', () => {
-  // Tu código aquí
-});
-```
-</details>
-
-<details>
-<summary>Pista 4: Calcular Promedio</summary>
-
-```javascript
-const average = items.reduce((sum, item) => sum + item.value, 0) / items.length;
-```
-</details>
-
----
-
-## 🎯 Resultado Esperado
-
-Al finalizar, deberías tener:
-
-1. ✅ Ficha mostrando información de tu dominio
-2. ✅ Botón funcional para copiar información
-3. ✅ Toggle de tema claro/oscuro
-4. ✅ Estadísticas calculadas dinámicamente
-5. ✅ Código limpio usando ES2023
-
----
-
-## 🚀 Entrega
-
-> **Este es el único entregable para aprobar la Semana 1**
-
-### Formato
-
-Crea una carpeta con tu apellido y nombre:
-
-```
-apellido-nombre-proyecto/
-├── index.html
-├── styles.css
-├── script.js
-├── README.md (con tu información)
-└── screenshots/
-    ├── light-theme.png
-    └── dark-theme.png
-```
-
-### README de Entrega
-
-```markdown
-# Ficha de [Tu Dominio] - [Tu Nombre]
-
-## 📋 Información
-- **Nombre**: [Sebastian Andres Gonzalez Loaiza]
-- **Fecha**: [07/02/2026]
-- **Dominio Asignado**: [Plataforma de salud mental]
-- **Entidad Principal**: [Salud y Bienestar]
-
-## 🎯 Descripción
-[En esta tarjeta mostraremos el nombre, descripcion y demas cosas de mi dominio de plataforma de salud mental.]
-
-## 📚 Conceptos ES2023 Aplicados
-- [✅] Variables con let/const
-- [✅] Template literals
-- [✅] Arrow functions
-- [✅] Destructuring
-- [✅] Optional chaining (?.)
-- [✅] Nullish coalescing (??)
-
-## 🚀 Cómo Ejecutar
-1. Abrir index.html en el navegador
-
-## 🎯 Autoevaluación
-- Funcionalidad: [100]%
-- Código ES2023: [100]%
-- Código Limpio: [80]%
-- Adaptación al Dominio: [80]%
-- **Total Estimado**: [90]%
-```
-
-## 📸 Screenshots
-
-![Screenshot 1](Img/test.png)
-
-![Screenshot 2](Img/screenshot2.png)
-
-![Screenshot 3](Img/screenshot3.png)
-
-![Screenshot 4](Img/screenshot4.png)
-
-### Plazos de Entrega
-
-- **Entrega**: Viernes de la semana correspondiente
-- **Retroalimentación**: Dentro de 3 días hábiles
-- **Reentrega** (si aplica): Dentro de 5 días de recibir feedback
+> Mínimo para aprobar: **70 puntos**
 
 ---
 
 ## ❓ Preguntas Frecuentes
 
-**P: ¿Puedo usar librerías externas?**
-R: No, este proyecto debe usar solo JavaScript ES2023 puro.
+**P: ¿Qué dominio debo usar?**
+R: El que te asigne tu instructor. Si no lo sabes, pregúntale antes de empezar.
 
-**P: ¿Puedo cambiar el diseño CSS?**
-R: Sí, puedes personalizar los estilos a tu gusto.
+**P: ¿Puedo ver el código de un compañero?**
+R: No. Cada dominio es único — tu implementación debe ser original y coherente con tu dominio.
 
-**P: ¿Qué pasa si mi dominio no está en la lista de ejemplos?**
-R: Pregunta a tu instructor. Él puede asignar dominios adicionales.
+**P: ¿Puedo usar variables?**
+R: No todavía. Esta semana solo `console.log()`, valores literales y comentarios. Las variables llegan en la Semana 2.
 
-**P: ¿Puedo ver la solución de otro compañero?**
-R: No. Cada dominio es único, tu implementación debe ser original.
+**P: ¿Qué pasa si mi dominio no aparece en la tabla de ejemplos?**
+R: Si tu dominio es distinto, aplica la misma lógica: elige una entidad principal con nombre, código, descripción, datos numéricos y estados booleanos.
 
 ---
 
-<p align="center">
-  <strong>🏛️ ¡Crea tu ficha de información profesional!</strong><br>
-  <em>Aplica todo lo aprendido en un proyecto real adaptado a tu dominio</em>
-</p>
+## 🔗 Navegación
+
+⬅️ [Volver a Prácticas](../2-practicas/)
+➡️ [Semana 2: Variables y Tipos de Datos](../../week-02/README.md)
