@@ -30,7 +30,7 @@
 // TODO: Cambia el título con el nombre de tu dominio y un identificador
 // Ejemplo (Planetario): '    PLANETARIO MUNICIPAL - FICHA #001    '
 console.log('=========================================');
-console.log('[TU DOMINIO] - Salud y bienestar');
+console.log('[TU DOMINIO] - Quokka start on current file');
 console.log('=========================================');
 console.log('');
 
