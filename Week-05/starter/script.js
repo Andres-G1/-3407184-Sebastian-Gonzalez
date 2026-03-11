@@ -15,7 +15,7 @@
 // SECCIÓN 1: Datos del elemento de tu dominio
 // ============================================
 // TODO: Define al menos 5 variables con datos de un elemento de tu dominio.
-const elementName = "Pelota anti estrés"; // nombre del elemento (string)
+const elementName = "Pelota Anti Estrés"; // nombre del elemento (string)
 const elementStatus = "Stock"; // estado actual (string: "active", "inactive", etc.)
 const elementValue = 10; // valor numérico para clasificar (ocupación, stock, puntaje…)
 const elementType = "Anti Estres"; // tipo o categoría (string)
