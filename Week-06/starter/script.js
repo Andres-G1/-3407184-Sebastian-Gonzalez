@@ -13,12 +13,12 @@
 // SECCIÓN 1: Datos del dominio - Salud Mental
 // ============================================
 const activities = [
-  { name: "Meditación guiada", category: "Mindfulness", value: 70 },
-  { name: "Escritura terapéutica (Journaling)", category: "Reflexión", value: 105 },
-  { name: "Caminata al aire libre", category: "Cuerpo", value: 150 },
-  { name: "Sesión de terapia", category: "Reflexión", value: 60 },
-  { name: "Ejercicios de respiración", category: "Mindfulness", value: 35 },
-  { name: "Lectura de desarrollo personal", category: "Reflexión", value: 120 }
+  { name: "Meditación guiada", category: "Mindfulness", value: 15_000 },
+  { name: "Escritura terapéutica (Journaling)", category: "Reflexión", value: 10_000 },
+  { name: "Caminata al aire libre", category: "Cuerpo", value: 11_000 },
+  { name: "Sesión de terapia", category: "Reflexión", value: 10_000 },
+  { name: "Ejercicios de respiración", category: "Mindfulness", value: 15_000 },
+  { name: "Lectura de desarrollo personal", category: "Reflexión", value: 10_000 }
 ];
 
 const categories = ["Mindfulness", "Reflexión", "Cuerpo"];
