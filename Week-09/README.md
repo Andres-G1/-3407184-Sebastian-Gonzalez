@@ -109,8 +109,15 @@ Tu `script.js` debe:
 
 1. `starter/script.js` completamente implementado con tu dominio
 2. `README.md` en la carpeta de tu entrega con:
-   - Descripción de tu dominio
-   - Screenshot o captura de la salida en consola
+   ### Descripción de tu dominio
+    - Salud Mental y Bienestar es un dominio
+    enfocado en el cuidado integral de las personas, abarcando tanto su salud mental como su bienestar físico. Gestiona actividades terapéuticas y de autocuidado como meditación y muchas mas. Cada actividad está clasificada por categoría, nivel de dificultad y duración, permitiendo a las personas construir rutinas personalizadas que promuevan el equilibrio emocional, la reducción del estrés y una mejor calidad de vida.
+   ### Screenshot o captura de la salida en consola
+   ![Salida en consola](/Week-09/Img/Imagen1.png)
+    ![Salida en consola](/Week-09/Img/Imagen2.png)
+    ![Salida en consola](/Week-09/Img/Imagen3.png)
+    ![Salida en consola](/Week-09/Img/Imagen4.png)
+    ![Salida en consola](/Week-09/Img/Imagen5.png)
 3. Ejecución sin errores: `node script.js`
 
 ---
