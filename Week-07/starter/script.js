@@ -1,6 +1,6 @@
 // ============================================
 // PROYECTO SEMANA 07 — Librería de Funciones
-// Dominio: [Tu dominio asignado]
+// Dominio: Salud Mental y Bienestar
 // ============================================
 
 // NOTA PARA EL APRENDIZ:
@@ -26,8 +26,8 @@
 // Ejemplo: const TAX_RATE = 0.19;
 //          const CURRENCY = "USD";
 //          const DOMAIN_NAME = "Mi Dominio";
-const DOMAIN_NAME = "Mi Dominio";
-const VALUE_LABEL = "valor"; // Ej: "precio", "cantidad", "duración"
+const DOMAIN_NAME = "Salud Mental y Bienestar";
+const VALUE_LABEL = "duración (min)"; // Ej: "precio", "cantidad", "duración"
 
 // TODO: Define un array con al menos 5 elementos de tu dominio.
 // Cada elemento debe ser un objeto con propiedades relevantes.
@@ -38,7 +38,15 @@ const VALUE_LABEL = "valor"; // Ej: "precio", "cantidad", "duración"
 //   ...
 // ];
 const items = [
-  // TODO: Agrega tus elementos aquí
+  // Cada actividad tiene: id, name (nombre), category (tipo de técnica),
+  // value (duración en minutos) y active (disponible para practicar)
+  { id: 1, name: "Respiración 4-7-8",        category: "respiración",   value: 5,   active: true  },
+  { id: 2, name: "Meditación guiada",         category: "meditación",    value: 20,  active: true  },
+  { id: 3, name: "Journaling de gratitud",    category: "escritura",     value: 15,  active: true  },
+  { id: 4, name: "Relajación muscular",       category: "corporal",      value: 10,  active: false },
+  { id: 5, name: "Visualización positiva",    category: "mindfulness",   value: 12,  active: true  },
+  { id: 6, name: "Caminata consciente",       category: "movimiento",    value: 30,  active: false },
+  { id: 7, name: "Técnica de grounding 5-4-3-2-1", category: "mindfulness", value: 8, active: true },
 ];
 
 // ============================================
@@ -57,12 +65,11 @@ const items = [
 // const formatItem = (medicine) =>
 //   `💊 ${medicine.name} — Stock: ${medicine.stock} — $${medicine.price}`;
 
-const formatItem = (item) => {
-  // TODO: Implementar usando template literals
-  // 1. Incluir el nombre del elemento
-  // 2. Incluir la categoría o tipo
-  // 3. Incluir el valor numérico relevante
-  return `${item.name}`; // TODO: Expandir este template
+const formatItem = (activity) => {
+  // Muestra el nombre de la actividad, su categoría y duración en minutos.
+  // El emoji 🧘 indica que está activa; ⏸️ que está pausada/inactiva.
+  const status = activity.active ? "🧘" : "⏸️ ";
+  return `${status} ${activity.name} [${activity.category}] — ${activity.value} min`;
 };
 
 // ============================================
@@ -80,8 +87,11 @@ const formatItem = (item) => {
 // const calculateValue = (price, quantity, discountPct = 0) =>
 //   +(price * quantity * (1 - discountPct / 100)).toFixed(2);
 
+// Calcula el tiempo total de práctica para una actividad en una semana.
+// baseValue = duración de la actividad en minutos
+// factor    = cantidad de sesiones a realizar (por defecto 1)
 const calculateValue = (baseValue, factor = 1) => {
-  // TODO: Implementar el cálculo relevante para tu dominio
+  // Tiempo total = duración por sesión × número de sesiones
   return baseValue * factor;
 };
 
@@ -101,9 +111,11 @@ const calculateValue = (baseValue, factor = 1) => {
 // Ejemplo (Gimnasio): verificar si el miembro está activo
 // const isValid = (member) => member.active === true;
 
-const isValid = (item) => {
-  // TODO: Implementar la condición de validez de tu dominio
-  return item.active === true;
+// Una actividad es válida (recomendable hoy) si está activa
+// y su duración es mayor a 0 minutos.
+const isValid = (activity) => {
+  // Condición: debe estar activa Y tener duración positiva
+  return activity.active === true && activity.value > 0;
 };
 
 // ============================================
@@ -121,10 +133,13 @@ const isValid = (item) => {
 // const formatPrice = (price, currency = "USD", showTax = false) =>
 //   showTax ? `${currency} ${(price * 1.19).toFixed(2)}` : `${currency} ${price.toFixed(2)}`;
 
-const formatWithDefault = (value, label = VALUE_LABEL, currency = "") => {
+// Formatea el total de minutos con una etiqueta y unidad por defecto.
+// label   = descripción del valor (por defecto usa VALUE_LABEL)
+// unit    = unidad de medida (por defecto "min")
+const formatWithDefault = (value, label = VALUE_LABEL, unit = "min") => {
   // TODO: Implementar con parámetros por defecto relevantes al dominio
-  return currency
-    ? `${label}: ${currency} ${value}`
+  return unit
+    ? `${label}: ${value} ${unit}`
     : `${label}: ${value}`;
 };
 
@@ -153,7 +168,7 @@ if (items.length === 0) {
   console.log("\n📋 Listado:");
   let lineNumber = 1;
   for (const item of items) {
-    // TODO: Usa formatItem(item) para mostrar cada elemento
+    // Usa formatItem(item) para mostrar cada actividad formateada
     console.log(`  ${lineNumber}. ${formatItem(item)}`);
     lineNumber++;
   }
@@ -161,19 +176,21 @@ if (items.length === 0) {
   // --- Validación ---
   let validCount = 0;
   for (const item of items) {
-    // TODO: Usa isValid(item) para contar los válidos
+    // Usa isValid(item) para contar las actividades disponibles hoy
     if (isValid(item)) {
       validCount++;
     }
   }
-  console.log(`\n✅ Elementos válidos: ${validCount} / ${items.length}`);
+  console.log(`\n✅ Actividades disponibles hoy: ${validCount} / ${items.length}`);
 
   // --- Cálculo ---
+  // Suma la duración de todas las actividades activas (1 sesión de cada una)
   let totalValue = 0;
   for (const item of items) {
-    // TODO: Usa calculateValue() con las propiedades de tu item
+    // Usa calculateValue() con la duración de cada actividad
     totalValue += calculateValue(item.value ?? 0);
   }
+  // Muestra el tiempo total usando formatWithDefault
   console.log(formatWithDefault(totalValue, `Total ${VALUE_LABEL}`));
 }
 
